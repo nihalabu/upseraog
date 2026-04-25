@@ -44,8 +44,8 @@ export default function Hero({ appReady = true }: { appReady?: boolean }) {
           </div>
           
           <h1 className="display-title mb-8 px-4" id="hero-headline">
-            BUILD <span className="serif-italic text-white/90">Software.</span><br />
-            SCALE <span className="text-white/40">Smarter.</span>
+            <span className="block md:whitespace-nowrap">BUILD <span className="serif-italic text-white/90">SOFTWARE.</span></span>
+            <span className="block md:whitespace-nowrap">SCALE <span className="text-white/40">SMARTER.</span></span>
           </h1>
           
           <p className="max-w-2xl text-base md:text-xl text-white/60 leading-relaxed font-light mb-12 px-6" id="hero-description">
