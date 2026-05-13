@@ -30,7 +30,7 @@ export default function Navbar() {
       y: "-100%",
       transition: {
         duration: 0.5,
-        ease: [0.16, 1, 0.3, 1],
+        ease: [0.16, 1, 0.3, 1] as const,
         staggerChildren: 0.05,
         staggerDirection: -1
       }
@@ -40,7 +40,7 @@ export default function Navbar() {
       y: 0,
       transition: {
         duration: 0.7,
-        ease: [0.16, 1, 0.3, 1],
+        ease: [0.16, 1, 0.3, 1] as const,
         staggerChildren: 0.1,
         delayChildren: 0.2
       }

@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
-import { useRef, Suspense, useState } from "react";
+import { useRef, useState } from "react";
 import ParticleSphere from "./ParticleSphere";
 
 interface ScrollSectionProps {
@@ -22,13 +22,121 @@ const Section = ({ children, className = "", id }: ScrollSectionProps) => {
     <motion.section
       ref={ref}
       style={{ opacity, y }}
-      className={`py-32 px-6 md:px-16 flex flex-col justify-center relative ${className}`}
+      className={`py-32 px-6 md:px-16 flex flex-col justify-center relative scroll-mt-24 ${className}`}
       id={id}
     >
       {children}
     </motion.section>
   );
 };
+
+function ContactForm() {
+  const [form, setForm] = useState({ name: '', company: '', email: '', message: '' });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async () => {
+    if (!form.name || !form.email || !form.message) return;
+    setStatus('loading');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error();
+      setStatus('success');
+      setForm({ name: '', company: '', email: '', message: '' });
+    } catch {
+      setStatus('error');
+    }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.3 }}
+      className="space-y-6 md:space-y-8 glass-card p-6 md:p-10 rounded-2xl md:rounded-3xl border border-white/5"
+    >
+      <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+        <div className="space-y-2">
+          <label className="text-[10px] uppercase tracking-widest text-white/30">Your Name *</label>
+          <input
+            type="text"
+            value={form.name}
+            onChange={e => setForm({ ...form, name: e.target.value })}
+            className="w-full bg-transparent border-b border-white/10 py-3 focus:border-white outline-none transition-colors text-white placeholder:text-white/20"
+            placeholder="John Doe"
+          />
+        </div>
+        <div className="space-y-2">
+          <label className="text-[10px] uppercase tracking-widest text-white/30">Company</label>
+          <input
+            type="text"
+            value={form.company}
+            onChange={e => setForm({ ...form, company: e.target.value })}
+            className="w-full bg-transparent border-b border-white/10 py-3 focus:border-white outline-none transition-colors text-white placeholder:text-white/20"
+            placeholder="Acme Inc."
+          />
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <label className="text-[10px] uppercase tracking-widest text-white/30">Email *</label>
+        <input
+          type="email"
+          value={form.email}
+          onChange={e => setForm({ ...form, email: e.target.value })}
+          className="w-full bg-transparent border-b border-white/10 py-3 focus:border-white outline-none transition-colors text-white placeholder:text-white/20"
+          placeholder="you@company.com"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <label className="text-[10px] uppercase tracking-widest text-white/30">Project Details *</label>
+        <textarea
+          rows={4}
+          value={form.message}
+          onChange={e => setForm({ ...form, message: e.target.value })}
+          className="w-full bg-transparent border-b border-white/10 py-3 focus:border-white outline-none transition-colors resize-none text-white placeholder:text-white/20"
+          placeholder="Tell us about your project..."
+        />
+      </div>
+
+      <button
+        type="button"
+        onClick={handleSubmit}
+        disabled={status === 'loading' || status === 'success'}
+        className="w-full py-4 md:py-5 bg-white text-black font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs hover:bg-zinc-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {status === 'loading' ? 'Sending...' : status === 'success' ? 'Message Sent ✓' : 'Send Message'}
+      </button>
+
+      <AnimatePresence>
+        {status === 'success' && (
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="text-center text-white/60 text-sm"
+          >
+            We got your message! We'll get back to you within 24 hours.
+          </motion.p>
+        )}
+        {status === 'error' && (
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="text-center text-red-400 text-sm"
+          >
+            Something went wrong. Please try again or email us directly.
+          </motion.p>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
 
 export default function Content() {
   return (
@@ -44,7 +152,7 @@ export default function Content() {
           >
             WE <span className="serif-italic text-white/90">BUILD.</span><br />
             YOU <span className="text-white/40">RISE.</span>
-          </motion.h2 >
+          </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -92,7 +200,6 @@ export default function Content() {
                     onClick={() => setOpenIndex(isOpen ? -1 : i)}
                     className="relative overflow-hidden group cursor-pointer border-b border-white/10 last:border-0 rounded-xl"
                   >
-                    {/* Spotlight Glass Background */}
                     <div className={`absolute inset-0 bg-white/0 group-hover:bg-white/[0.04] transition-colors duration-500 z-0`}></div>
 
                     <div className="px-6 py-6 flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
@@ -130,9 +237,9 @@ export default function Content() {
                           className="overflow-hidden"
                         >
                           <div className="px-6 md:px-20 pb-8 max-w-2xl relative z-10">
-                             <div className="text-base md:text-lg text-white/50 font-light leading-relaxed">
-                               {item.desc}
-                             </div>
+                            <div className="text-base md:text-lg text-white/50 font-light leading-relaxed">
+                              {item.desc}
+                            </div>
                           </div>
                         </motion.div>
                       )}
@@ -147,7 +254,6 @@ export default function Content() {
 
       {/* Why UPSERA */}
       <Section id="why-upsera" className="relative overflow-hidden min-h-[90vh] flex items-center">
-        {/* Background Video Animation */}
         <div className="absolute inset-0 z-0 opacity-60 pointer-events-none">
           <video 
             autoPlay 
@@ -158,7 +264,6 @@ export default function Content() {
           >
             <source src="/assets/handanimation.mp4" type="video/mp4" />
           </video>
-          {/* Subtle Overlay Gradient to blend with background while preserving color */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-transparent to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent"></div>
         </div>
@@ -226,7 +331,7 @@ export default function Content() {
                 <div className={`aspect-[4/5] rounded-3xl mb-6 overflow-hidden relative bg-gradient-to-b ${project.color} to-transparent border border-white/5`}>
                   <div className="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors duration-500"></div>
                   <div className="absolute inset-0 flex items-center justify-center p-12">
-                     <span className="text-2xl font-bold tracking-tighter group-hover:scale-110 transition-transform">{project.name}</span>
+                    <span className="text-2xl font-bold tracking-tighter group-hover:scale-110 transition-transform">{project.name}</span>
                   </div>
                 </div>
                 <div className="flex justify-between items-center px-2">
@@ -355,34 +460,7 @@ export default function Content() {
               </div>
             </motion.div>
 
-            <motion.form 
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="space-y-6 md:space-y-8 glass-card p-6 md:p-10 rounded-2xl md:rounded-3xl border border-white/5"
-            >
-              <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-                <div className="space-y-2">
-                  <label className="text-[10px] uppercase tracking-widest text-white/30">Your Name *</label>
-                  <input type="text" className="w-full bg-transparent border-b border-white/10 py-3 focus:border-white outline-none transition-colors" />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] uppercase tracking-widest text-white/30">Company</label>
-                  <input type="text" className="w-full bg-transparent border-b border-white/10 py-3 focus:border-white outline-none transition-colors" />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label className="text-[10px] uppercase tracking-widest text-white/30">Email *</label>
-                <input type="email" className="w-full bg-transparent border-b border-white/10 py-3 focus:border-white outline-none transition-colors" />
-              </div>
-              <div className="space-y-2">
-                <label className="text-[10px] uppercase tracking-widest text-white/30">Project Details *</label>
-                <textarea rows={4} className="w-full bg-transparent border-b border-white/10 py-3 focus:border-white outline-none transition-colors resize-none" />
-              </div>
-              <button type="button" className="w-full py-4 md:py-5 bg-white text-black font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs hover:bg-zinc-200 transition-colors">
-                Send Message
-              </button>
-            </motion.form>
+            <ContactForm />
           </div>
         </div>
       </Section>

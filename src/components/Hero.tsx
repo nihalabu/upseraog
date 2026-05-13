@@ -54,15 +54,16 @@ export default function Hero({ appReady = true }: { appReady?: boolean }) {
           </p>
           
           <div className="flex items-center justify-center gap-8 mb-16" id="hero-actions">
-            <motion.button
+            <motion.a
+              href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group relative px-8 md:px-10 py-4 md:py-5 bg-white text-black font-semibold uppercase tracking-widest text-[10px] rounded-sm overflow-hidden border border-white"
+              className="group relative px-8 md:px-10 py-4 md:py-5 bg-white text-black font-semibold uppercase tracking-widest text-[10px] rounded-sm overflow-hidden border border-white inline-block"
               id="btn-lets-talk"
             >
               <span className="relative z-10 text-black">Let's Talk</span>
               <div className="absolute inset-0 bg-neutral-200 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-            </motion.button>
+            </motion.a>
           </div>
         </motion.div>
         
