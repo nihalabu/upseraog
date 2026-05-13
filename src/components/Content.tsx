@@ -1,6 +1,5 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { useRef, useState } from "react";
-import ParticleSphere from "./ParticleSphere";
 
 interface ScrollSectionProps {
   children: React.ReactNode;
