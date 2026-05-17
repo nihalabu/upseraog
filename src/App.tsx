@@ -25,7 +25,13 @@ export default function App() {
   return (
     <>
       <OpeningAnimation onComplete={() => setAppReady(true)} />
-      <main className={`relative selection:bg-white/20 selection:text-white bg-[#050505] min-h-screen ${!appReady ? 'opacity-0' : 'opacity-100 transition-opacity duration-1000'}`} id="main-layout">
+      <motion.main 
+        className="relative selection:bg-white/20 selection:text-white bg-[#050505] min-h-screen" 
+        id="main-layout"
+        initial={{ opacity: 0, y: 150 }}
+        animate={appReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 150 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      >
         {/* Scroll Progress Bar */}
         <motion.div
           className="fixed top-0 left-0 right-0 h-1 bg-white z-[60] origin-left"
@@ -66,7 +72,7 @@ export default function App() {
             </div>
           </div>
         </footer>
-      </main>
+      </motion.main>
     </>
   );
 }
