@@ -21,7 +21,7 @@ export default function OpeningAnimation({ onComplete }: { onComplete: () => voi
           exit={{ opacity: 0, y: "-120vh", transition: { duration: 0.6, ease: "easeIn" } }}
         >
           <motion.img
-            src="/public/removedbg.webp"
+            src="/removedbg.webp"
             alt="UPSERA Logo"
             width="140"
             height="140"
