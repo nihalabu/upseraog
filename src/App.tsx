@@ -25,8 +25,8 @@ export default function App() {
   return (
     <>
       <OpeningAnimation onComplete={() => setAppReady(true)} />
-      <motion.main 
-        className="relative selection:bg-white/20 selection:text-white bg-[#050505] min-h-screen" 
+      <motion.main
+        className="relative selection:bg-white/20 selection:text-white bg-[#050505] min-h-screen"
         id="main-layout"
         initial={{ opacity: 0, y: 150 }}
         animate={appReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 150 }}
@@ -37,18 +37,19 @@ export default function App() {
           className="fixed top-0 left-0 right-0 h-1 bg-white z-[60] origin-left"
           style={{ scaleX }}
         />
-        
+
         <Navbar />
-        
+
         <Hero appReady={appReady} />
-        
+
         <Content />
-        
+
         {/* Background Grids & Blobs */}
         <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none" id="global-background">
           <div className="absolute inset-0 bg-grid-white opacity-20"></div>
-          <div className="glow -top-40 -left-40 opacity-30 scale-150"></div>
-          <div className="glow bottom-0 right-0 opacity-20 scale-150"></div>
+
+          <div className="glow -top-40 -left-40 opacity-30 scale-150" style={{ width: '400px', height: '400px' }}></div>
+          <div className="glow bottom-0 right-0 opacity-20 scale-150" style={{ width: '400px', height: '400px' }}></div>
         </div>
 
         <footer className="relative z-10 px-6 md:px-16 flex flex-col md:flex-row items-center justify-between border-t border-white/10 pt-12 pb-20 mt-20" id="editorial-footer">
@@ -62,7 +63,7 @@ export default function App() {
               <span className="text-xs">upseramedia@gmail.com</span>
             </div>
           </div>
-          
+
           <div className="text-center md:text-right">
             <div className="text-[28px] md:text-[40px] font-bold tracking-tighter leading-none mb-2">
               We build. You rise<span className="text-white/20">.</span>

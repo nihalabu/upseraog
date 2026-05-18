@@ -1,11 +1,11 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { lazy, Suspense } from "react";
 
-const UpseraScene = lazy(() => import("./UpseraScene"));
-
 function isMobile() {
   return window.innerWidth < 768;
 }
+
+const UpseraScene = !isMobile() ? lazy(() => import("./UpseraScene")) : null;
 
 export default function Hero({ appReady = true }: { appReady?: boolean }) {
   const { scrollY } = useScroll();
@@ -16,7 +16,7 @@ export default function Hero({ appReady = true }: { appReady?: boolean }) {
     <section className="relative min-h-screen flex flex-col items-center pt-32 pb-16 overflow-hidden" id="hero">
       
       {/* Only load 3D scene on desktop */}
-      {!mobile && (
+      {!mobile && UpseraScene &&  (
         <div className="relative z-[1] w-full absolute inset-0">
           <Suspense fallback={null}>
             <UpseraScene />
