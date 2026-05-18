@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
-import { useRef, useState } from "react";
+import { useRef, useState ,useEffect} from "react";
 
 interface ScrollSectionProps {
   children: React.ReactNode;
@@ -137,6 +137,39 @@ function ContactForm() {
   );
 }
 
+
+// Add this component above Content()
+function LazyVideo() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          videoRef.current?.play();
+        } else {
+          videoRef.current?.pause();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (videoRef.current) observer.observe(videoRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={videoRef}
+      loop
+      muted
+      playsInline
+      preload="none"
+      className="w-full h-full object-cover"
+    >
+      <source src="/assets/handanimation.mp4" type="video/mp4" />
+    </video>
+  );
+}
 export default function Content() {
   return (
     <div className="relative z-10" id="page-content">
@@ -254,15 +287,7 @@ export default function Content() {
       {/* Why UPSERA */}
       <Section id="why-upsera" className="relative overflow-hidden min-h-[90vh] flex items-center">
         <div className="absolute inset-0 z-0 opacity-60 pointer-events-none">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-          >
-            <source src="/assets/handanimation.mp4" type="video/mp4" />
-          </video>
+          <LazyVideo />
           <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-transparent to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent"></div>
         </div>

@@ -20,9 +20,12 @@ export default function OpeningAnimation({ onComplete }: { onComplete: () => voi
           className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-transparent pointer-events-none"
           exit={{ opacity: 0, y: "-120vh", transition: { duration: 0.6, ease: "easeIn" } }}
         >
-          <motion.img 
+          <motion.img
             src="/assets/removedbg.png"
             alt="UPSERA Logo"
+            width="140"
+            height="140"
+            fetchPriority="high"
             className="w-[140px] h-[140px] object-contain"
             initial={{ scale: 0.85, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}

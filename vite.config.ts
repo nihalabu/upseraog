@@ -10,23 +10,27 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       tailwindcss(),
-      sitemap({
-        hostname: 'https://upsera.co.in',
-      }),
+      sitemap({ hostname: 'https://upsera.co.in' }),
     ],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
     },
     resolve: {
-      alias: {
-        '@': path.resolve(__dirname, '.'),
-      },
+      alias: { '@': path.resolve(__dirname, '.') },
     },
     server: {
       hmr: process.env.DISABLE_HMR !== 'true',
     },
     build: {
       chunkSizeWarningLimit: 2000,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'three-vendor': ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing'],
+            'motion-vendor': ['motion'],
+          }
+        }
+      }
     },
   };
 });
