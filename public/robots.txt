@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://upsera.co.in/sitemap.xml
