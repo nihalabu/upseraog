@@ -7,14 +7,14 @@ export default function Hero({ appReady = true }: { appReady?: boolean }) {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center pt-32 pb-16 overflow-hidden" id="hero">
-      
+
       {/* Set UpseraScene z-index higher than background */}
       <div className="relative z-[1] w-full absolute inset-0">
         <UpseraScene />
       </div>
-      
+
       {/* Blended Background Image */}
-      <motion.div 
+      <motion.div
         style={{
           WebkitMaskImage: 'radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%)',
           maskImage: 'radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%)',
@@ -22,13 +22,13 @@ export default function Hero({ appReady = true }: { appReady?: boolean }) {
         }}
         className="absolute inset-0 z-0 pointer-events-none overflow-hidden"
       >
-        <img 
-          src="/assets/hero_bg.jpg" 
-          alt="" 
+        <img
+          src="/assets/hero_bg.jpg"
+          alt=""
           className="w-full h-full object-cover mix-blend-screen"
         />
       </motion.div>
-      
+
       <div className="max-w-[1440px] mx-auto px-6 relative z-10 w-full flex flex-col items-center text-center">
         <motion.div
           initial={{ y: 30, opacity: 0 }}
@@ -42,17 +42,15 @@ export default function Hero({ appReady = true }: { appReady?: boolean }) {
             <span id="hero-tagline" className="px-2">EVERY GREAT BUSINESS HAS A STORY. LET'S WRITE YOURS.</span>
             <span className="w-4 md:w-8 h-[1px] bg-white/30"></span>
           </div>
-          
+
           <h1 className="display-title mb-8 px-4" id="hero-headline">
-            <span className="block md:whitespace-nowrap">BUILD <span className="serif-italic text-white/90">SOFTWARE.</span></span>
-            <span className="block md:whitespace-nowrap">SCALE <span className="text-white/40">SMARTER.</span></span>
+            <span className="block md:whitespace-nowrap">WEB DESIGN</span>
+            <span className="block md:whitespace-nowrap"><span className="serif-italic text-white/90">& AI SOLUTIONS</span></span>
+            <span className="block md:whitespace-nowrap">IN <span className="text-white/40">COCHIN.</span></span>
           </h1>
-          
           <p className="max-w-2xl text-base md:text-xl text-white/60 leading-relaxed font-light mb-12 px-6" id="hero-description">
-            UPSERA builds high-performance software solutions for businesses focused on solving real operational problems. 
-            We start with websites and evolve into full digital ecosystems.
+            UPSERA delivers web design, AI business solutions, and digital solutions for businesses in Cochin ready to grow online.
           </p>
-          
           <div className="flex items-center justify-center gap-8 mb-16" id="hero-actions">
             <motion.a
               href="#contact"
@@ -66,7 +64,7 @@ export default function Hero({ appReady = true }: { appReady?: boolean }) {
             </motion.a>
           </div>
         </motion.div>
-        
+
       </div>
     </section>
   );

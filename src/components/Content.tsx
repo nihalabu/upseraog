@@ -143,22 +143,22 @@ export default function Content() {
       {/* What We Do */}
       <Section id="what-we-do">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.h2 
+          <motion.h2
             className="display-title mb-8"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
           >
-            WE <span className="serif-italic text-white/90">BUILD.</span><br />
-            YOU <span className="text-white/40">RISE.</span>
+            DIGITAL <span className="serif-italic text-white/90">SOLUTIONS</span><br />
+            FOR <span className="text-white/40">BUSINESS.</span>
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-lg md:text-2xl text-white/60 leading-relaxed font-light mb-16"
           >
-            Every brand has a story worth telling. We find it, shape it, and build it.
+            Kochi's web design company for businesses that want more than just a website — we build complete digital solutions that drive real growth.
           </motion.p>
 
           <div className="max-w-4xl mx-auto text-left space-y-4">
@@ -166,30 +166,30 @@ export default function Content() {
               const [openIndex, setOpenIndex] = useState(0);
 
               return [
-                { 
-                  title: "Storytelling", 
-                  desc: "High-performance websites built to convert visitors into clients. We focus on speed, accessibility, and conversion-centered design to ensure your digital presence is more than just a brochure — it's a growth engine.",
+                {
+                  title: "Web Development",
+                  desc: "High-performance websites built by the best web design company in Kochi to convert visitors into clients. We focus on speed, accessibility, and conversion-centered design to ensure your digital presence is more than just a brochure — it's a growth engine.",
                   status: "Web Development",
                   count: "01"
                 },
-                { 
-                  title: "Experience", 
-                  desc: "Tailored software solutions built around your specific workflow. From custom CRM integrations to complex data management portals, we engineer the invisible infrastructure that powers your success.",
+                {
+                  title: "AI Business Solutions",
+                  desc: "Tailored AI solutions for business built around your specific workflow. From custom CRM integrations to intelligent automation portals, we engineer the invisible infrastructure that powers your success in Cochin and beyond.",
                   status: "Custom Software",
-                  count: "02" 
+                  count: "02"
                 },
-                { 
-                  title: "Ascension", 
-                  desc: "Smart automations that save time and eliminate manual work. We leverage AI and modern logic to simplify your operations, letting you focus on scaling while the systems handle the routine.",
+                {
+                  title: "Digital Solutions",
+                  desc: "Smart digital solutions for business that save time and eliminate manual work. We leverage AI and modern logic to simplify your operations in Kerala, letting you focus on scaling while the systems handle the routine.",
                   status: "Automation & AI",
-                  count: "03" 
+                  count: "03"
                 }
               ].map((item, i) => {
                 const [isHovered, setIsHovered] = useState(false);
                 const isOpen = openIndex === i;
 
                 return (
-                  <motion.div 
+                  <motion.div
                     key={i}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -212,12 +212,12 @@ export default function Content() {
                           {item.title}
                         </h3>
                       </div>
-                      
+
                       <div className="flex items-center gap-4">
                         <div className={`text-[9px] uppercase tracking-[0.2em] transition-colors duration-500 hidden md:block ${isHovered ? 'text-white/50' : 'text-white/20'}`}>
                           {item.status}
                         </div>
-                        <motion.div 
+                        <motion.div
                           animate={{ rotate: isOpen ? 45 : 0 }}
                           className={`w-10 h-10 rounded-full border transition-colors duration-500 flex items-center justify-center text-xl font-light ${isHovered || isOpen ? 'border-white/30' : 'border-white/10'}`}
                         >
@@ -228,7 +228,7 @@ export default function Content() {
 
                     <AnimatePresence>
                       {isOpen && (
-                        <motion.div 
+                        <motion.div
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
@@ -254,11 +254,11 @@ export default function Content() {
       {/* Why UPSERA */}
       <Section id="why-upsera" className="relative overflow-hidden min-h-[90vh] flex items-center">
         <div className="absolute inset-0 z-0 opacity-60 pointer-events-none">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline 
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
             className="w-full h-full object-cover"
           >
             <source src="/assets/handanimation.mp4" type="video/mp4" />
@@ -269,27 +269,27 @@ export default function Content() {
 
         <div className="container mx-auto px-6 md:px-16 relative z-10">
           <div className="max-w-3xl">
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               className="display-title mb-8 text-[40px] md:text-[60px]"
             >
-              BUILT ON <span className="serif-italic">TRUST.</span><br />
-              DRIVEN BY<br />
-              <span className="text-white/40">TRANSPARENCY.</span>
+              WEB DESIGNERS <br />
+              <span className="serif-italic">IN KOCHI,</span><br />
+              <span className="text-white/40">YOU CAN TRUST.</span>
             </motion.h2>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="space-y-6 text-white/60 text-xl font-light leading-relaxed max-w-2xl"
             >
               <p>
-                We started UPSERA with one belief — clients deserve to know exactly what's being built, why it's being built, and when it will be done. No jargon. No runaround. No surprises on launch day.
+                We build web design and AI solutions for businesses in Cochin that are serious about their online growth. Every project is crafted with one goal — results that matter to your business.
               </p>
               <p>
-                Every project is a relationship. And every relationship runs on honesty. You will always know where your project stands — because that's how trust is built.
+                No templates. No shortcuts. Just clean web development and smart AI business solutions delivered with full transparency from day one.
               </p>
             </motion.div>
           </div>
@@ -299,7 +299,7 @@ export default function Content() {
       {/* Projects */}
       <Section id="projects">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -319,7 +319,7 @@ export default function Content() {
               { name: "Heavy Duty Hub", category: "Equipment Rental", color: "from-purple-500/20" },
               { name: "Edusity", category: "Education Platform", color: "from-orange-500/20" }
             ].map((project, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -361,9 +361,9 @@ export default function Content() {
               <span className="serif-italic font-bold">We solve problems that actually matter to your business.</span>"
             </blockquote>
           </motion.div>
-          
+
           <div className="h-[1px] w-24 bg-white/10 mx-auto mb-12"></div>
-          
+
           <div className="grid md:grid-cols-2 gap-12 text-left">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -416,8 +416,8 @@ export default function Content() {
                             key={i}
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
-                            transition={{ 
-                              duration: 0.1, 
+                            transition={{
+                              duration: 0.1,
                               delay: 0.5 + (i * 0.1),
                               ease: "linear"
                             }}
@@ -427,9 +427,9 @@ export default function Content() {
                         ))}
                         <motion.span
                           animate={{ opacity: [1, 0, 1] }}
-                          transition={{ 
-                            duration: 1, 
-                            repeat: Infinity, 
+                          transition={{
+                            duration: 1,
+                            repeat: Infinity,
                             ease: "easeInOut",
                             delay: 1.2
                           }}
@@ -446,7 +446,7 @@ export default function Content() {
               <p className="text-white/30 text-xs mb-12 max-w-sm">
                 Remote-first. Working with businesses worldwide. We respond within 24 hours.
               </p>
-              
+
               <div className="space-y-8">
                 <div>
                   <label className="text-[10px] uppercase tracking-widest text-white/30 block mb-2">Email</label>
