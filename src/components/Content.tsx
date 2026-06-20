@@ -180,25 +180,34 @@ function ProjectScrollArrows({ targetId }: { targetId: string }) {
     track.scrollBy({ left: direction === "left" ? -cardWidth : cardWidth, behavior: "smooth" });
   };
 
+  const baseClasses =
+    "hidden md:flex absolute top-0 bottom-6 z-20 items-center justify-center w-14 pointer-events-none";
+  const buttonClasses =
+    "pointer-events-auto w-12 h-12 rounded-full bg-[#050505]/80 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-white/30 hover:bg-[#050505] transition-all";
+
   return (
-    <div className="hidden md:flex items-center gap-3 shrink-0">
-      <button
-        type="button"
-        onClick={() => scrollBy("left")}
-        aria-label="Scroll projects left"
-        className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all"
-      >
-        ←
-      </button>
-      <button
-        type="button"
-        onClick={() => scrollBy("right")}
-        aria-label="Scroll projects right"
-        className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all"
-      >
-        →
-      </button>
-    </div>
+    <>
+      <div className={`${baseClasses} -left-2 md:-left-6 justify-start bg-gradient-to-r from-[#050505] via-[#050505]/60 to-transparent`}>
+        <button
+          type="button"
+          onClick={() => scrollBy("left")}
+          aria-label="Scroll projects left"
+          className={buttonClasses}
+        >
+          ←
+        </button>
+      </div>
+      <div className={`${baseClasses} -right-2 md:-right-6 justify-end bg-gradient-to-l from-[#050505] via-[#050505]/60 to-transparent`}>
+        <button
+          type="button"
+          onClick={() => scrollBy("right")}
+          aria-label="Scroll projects right"
+          className={buttonClasses}
+        >
+          →
+        </button>
+      </div>
+    </>
   );
 }
 
@@ -365,18 +374,18 @@ export default function Content() {
             <h2 className="display-title text-[40px] md:text-[90px]">
               Selected <span className="serif-italic">Work.</span>
             </h2>
-            <div className="flex items-center gap-6">
-              <p className="text-white/40 text-[10px] md:text-sm max-w-xs uppercase tracking-widest leading-loose">
-                06 Projects Delivered • 2024–25 Showcase
-              </p>
-              <ProjectScrollArrows targetId="projects-scroll-track" />
-            </div>
+            <p className="text-white/40 text-[10px] md:text-sm max-w-xs uppercase tracking-widest leading-loose">
+              06 Projects Delivered • 2024–25 Showcase
+            </p>
           </motion.div>
 
-          <div
-            id="projects-scroll-track"
-            className="flex gap-8 overflow-x-auto pb-6 px-6 md:px-0 snap-x snap-mandatory scroll-smooth scrollbar-none"
-          >
+          <div className="relative">
+            <ProjectScrollArrows targetId="projects-scroll-track" />
+
+            <div
+              id="projects-scroll-track"
+              className="flex gap-8 overflow-x-auto pb-6 px-6 md:px-0 snap-x snap-mandatory scroll-smooth scrollbar-none"
+            >
             {[
               { name: "Laege Mathru Clinic", category: "Cosmetic & Wellness", image: "/assets/projects/laege-mathru-clinic.webp", url: "https://laegemathrru.vercel.app/" },
               { name: "Shreshta Interiors", category: "Architecture & Interiors", image: "/assets/projects/shreshta.webp", url: "https://shreshtademo.vercel.app/" },
@@ -417,6 +426,7 @@ export default function Content() {
                 </div>
               </motion.a>
             ))}
+            </div>
           </div>
         </div>
       </Section>
