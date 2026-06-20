@@ -334,40 +334,50 @@ export default function Content() {
               Selected <span className="serif-italic">Work.</span>
             </h2>
             <p className="text-white/40 text-[10px] md:text-sm max-w-xs uppercase tracking-widest leading-loose">
-              03 Projects Delivered • 2024 Showcase
+              06 Projects Delivered • 2024–25 Showcase
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { name: "Route Care", category: "Property Management", color: "from-blue-500/20" },
-              { name: "Heavy Duty Hub", category: "Equipment Rental", color: "from-purple-500/20" },
-              { name: "Edusity", category: "Education Platform", color: "from-orange-500/20" }
+              { name: "Laege Mathru Clinic", category: "Cosmetic & Wellness", image: "/assets/projects/laege-mathru-clinic.webp", url: "https://laegemathrru.vercel.app/" },
+              { name: "Shreshta Interiors", category: "Architecture & Interiors", image: "/assets/projects/shreshta.webp", url: "https://shreshtademo.vercel.app/" },
+              { name: "Edusity", category: "Education Platform", image: "/assets/projects/edusity.webp", url: "https://edusitylanding.vercel.app/" },
+              { name: "Heavy Duty Hub", category: "Equipment Rental", image: "/assets/projects/heavydutyhub.webp", url: "https://heavydutyhub.vercel.app/" },
+              { name: "CineMatch", category: "Movie Recommendation Platform", image: "/assets/projects/cinematch.webp", url: "https://cinematch-1.vercel.app/" },
+              { name: "Route Care", category: "Property Management", image: "/assets/projects/routecare.webp", url: "https://routecare.netlify.app/" }
             ].map((project, i) => (
-              <motion.div
+              <motion.a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 key={i}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.15 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.6, delay: (i % 3) * 0.15 }}
                 whileHover={{ scale: 1.02 }}
-                className="group cursor-pointer"
+                className="group cursor-pointer block"
               >
-                <div className={`aspect-[4/5] rounded-3xl mb-6 overflow-hidden relative bg-gradient-to-b ${project.color} to-transparent border border-white/5`}>
-                  <div className="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors duration-500"></div>
-                  <div className="absolute inset-0 flex items-center justify-center p-12">
-                    <span className="text-2xl font-bold tracking-tighter group-hover:scale-110 transition-transform">{project.name}</span>
-                  </div>
+                <div className="aspect-[16/10] rounded-3xl mb-6 overflow-hidden relative border border-white/5 bg-black">
+                  <img
+                    src={project.image}
+                    alt={`${project.name} — ${project.category}`}
+                    loading="lazy"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500"></div>
                 </div>
                 <div className="flex justify-between items-center px-2">
                   <div>
                     <h4 className="font-bold">{project.name}</h4>
                     <p className="text-xs text-white/40 uppercase tracking-widest mt-1">{project.category}</p>
                   </div>
-                  <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                  <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black group-hover:rotate-45 transition-all duration-300 shrink-0">
                     →
                   </div>
                 </div>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
         </div>
