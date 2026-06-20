@@ -181,13 +181,13 @@ function ProjectScrollArrows({ targetId }: { targetId: string }) {
   };
 
   const baseClasses =
-    "hidden md:flex absolute top-0 bottom-6 z-20 items-center justify-center w-14 pointer-events-none";
+    "flex absolute top-0 bottom-6 z-20 items-center justify-center pointer-events-none";
   const buttonClasses =
-    "pointer-events-auto w-12 h-12 rounded-full bg-[#050505]/80 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-white/30 hover:bg-[#050505] transition-all";
+    "pointer-events-auto w-9 h-9 md:w-12 md:h-12 rounded-full bg-[#050505]/90 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:border-white/30 hover:bg-[#050505] transition-all text-sm md:text-base";
 
   return (
     <>
-      <div className={`${baseClasses} -left-2 md:-left-6 justify-start bg-gradient-to-r from-[#050505] via-[#050505]/60 to-transparent`}>
+      <div className={`${baseClasses} -left-4 sm:-left-5 md:-left-14 lg:-left-16 w-10 sm:w-12 md:w-16 justify-start bg-gradient-to-r from-[#050505] via-[#050505]/70 to-transparent`}>
         <button
           type="button"
           onClick={() => scrollBy("left")}
@@ -197,7 +197,7 @@ function ProjectScrollArrows({ targetId }: { targetId: string }) {
           ←
         </button>
       </div>
-      <div className={`${baseClasses} -right-2 md:-right-6 justify-end bg-gradient-to-l from-[#050505] via-[#050505]/60 to-transparent`}>
+      <div className={`${baseClasses} -right-4 sm:-right-5 md:-right-14 lg:-right-16 w-10 sm:w-12 md:w-16 justify-end bg-gradient-to-l from-[#050505] via-[#050505]/70 to-transparent`}>
         <button
           type="button"
           onClick={() => scrollBy("right")}
@@ -364,14 +364,14 @@ export default function Content() {
 
       {/* Projects */}
       <Section id="projects">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto w-full">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-4 md:gap-8 px-6 md:px-0"
+            className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-10 md:mb-16 gap-4 md:gap-8"
           >
-            <h2 className="display-title text-[40px] md:text-[90px]">
+            <h2 className="display-title text-[36px] sm:text-[56px] md:text-[90px] leading-none">
               Selected <span className="serif-italic">Work.</span>
             </h2>
             <p className="text-white/40 text-[10px] md:text-sm max-w-xs uppercase tracking-widest leading-loose">
@@ -379,12 +379,13 @@ export default function Content() {
             </p>
           </motion.div>
 
-          <div className="relative">
+          {/* Arrow wrapper extends beyond the card track on larger screens */}
+          <div className="relative px-5 sm:px-6 md:px-16 lg:px-20">
             <ProjectScrollArrows targetId="projects-scroll-track" />
 
             <div
               id="projects-scroll-track"
-              className="flex gap-8 overflow-x-auto pb-6 px-6 md:px-0 snap-x snap-mandatory scroll-smooth scrollbar-none"
+              className="flex gap-5 md:gap-8 overflow-x-auto pb-6 snap-x snap-mandatory scroll-smooth scrollbar-none"
             >
             {[
               { name: "Laege Mathru Clinic", category: "Cosmetic & Wellness", image: "/assets/projects/laege-mathru-clinic.webp", url: "https://laegemathrru.vercel.app/" },
@@ -404,9 +405,9 @@ export default function Content() {
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 whileHover={{ scale: 1.02 }}
-                className="group cursor-pointer shrink-0 w-[78vw] sm:w-[340px] snap-start"
+                className="group cursor-pointer shrink-0 w-[72vw] sm:w-[300px] md:w-[320px] lg:w-[340px] snap-start"
               >
-                <div className="aspect-[4/5] rounded-3xl mb-6 overflow-hidden relative border border-white/5 bg-black">
+                <div className="aspect-[4/5] rounded-2xl md:rounded-3xl mb-4 md:mb-6 overflow-hidden relative border border-white/5 bg-black">
                   <img
                     src={project.image}
                     alt={`${project.name} — ${project.category}`}
@@ -415,12 +416,12 @@ export default function Content() {
                   />
                   <div className="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors duration-500"></div>
                 </div>
-                <div className="flex justify-between items-center px-2">
+                <div className="flex justify-between items-center px-1">
                   <div>
-                    <h4 className="font-bold">{project.name}</h4>
-                    <p className="text-xs text-white/40 uppercase tracking-widest mt-1">{project.category}</p>
+                    <h4 className="font-bold text-sm md:text-base">{project.name}</h4>
+                    <p className="text-[10px] md:text-xs text-white/40 uppercase tracking-widest mt-1">{project.category}</p>
                   </div>
-                  <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all shrink-0">
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all shrink-0 text-sm">
                     →
                   </div>
                 </div>
