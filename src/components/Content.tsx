@@ -170,6 +170,38 @@ function LazyVideo() {
     </video>
   );
 }
+// Add this component above Content()
+function ProjectScrollArrows({ targetId }: { targetId: string }) {
+  const scrollBy = (direction: "left" | "right") => {
+    const track = document.getElementById(targetId);
+    if (!track) return;
+    const card = track.querySelector("a");
+    const cardWidth = card ? card.getBoundingClientRect().width + 32 : 360; // + gap-8 (32px)
+    track.scrollBy({ left: direction === "left" ? -cardWidth : cardWidth, behavior: "smooth" });
+  };
+
+  return (
+    <div className="hidden md:flex items-center gap-3 shrink-0">
+      <button
+        type="button"
+        onClick={() => scrollBy("left")}
+        aria-label="Scroll projects left"
+        className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all"
+      >
+        ←
+      </button>
+      <button
+        type="button"
+        onClick={() => scrollBy("right")}
+        aria-label="Scroll projects right"
+        className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all"
+      >
+        →
+      </button>
+    </div>
+  );
+}
+
 export default function Content() {
   return (
     <div className="relative z-10" id="page-content">
@@ -333,12 +365,18 @@ export default function Content() {
             <h2 className="display-title text-[40px] md:text-[90px]">
               Selected <span className="serif-italic">Work.</span>
             </h2>
-            <p className="text-white/40 text-[10px] md:text-sm max-w-xs uppercase tracking-widest leading-loose">
-              06 Projects Delivered • 2024–25 Showcase
-            </p>
+            <div className="flex items-center gap-6">
+              <p className="text-white/40 text-[10px] md:text-sm max-w-xs uppercase tracking-widest leading-loose">
+                06 Projects Delivered • 2024–25 Showcase
+              </p>
+              <ProjectScrollArrows targetId="projects-scroll-track" />
+            </div>
           </motion.div>
 
-          <div className="flex gap-8 overflow-x-auto pb-6 px-6 md:px-0 snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-track]:bg-white/5 [&::-webkit-scrollbar-thumb]:bg-white/20 [&::-webkit-scrollbar-thumb]:rounded-full">
+          <div
+            id="projects-scroll-track"
+            className="flex gap-8 overflow-x-auto pb-6 px-6 md:px-0 snap-x snap-mandatory scroll-smooth scrollbar-none"
+          >
             {[
               { name: "Laege Mathru Clinic", category: "Cosmetic & Wellness", image: "/assets/projects/laege-mathru-clinic.webp", url: "https://laegemathrru.vercel.app/" },
               { name: "Shreshta Interiors", category: "Architecture & Interiors", image: "/assets/projects/shreshta.webp", url: "https://shreshtademo.vercel.app/" },
