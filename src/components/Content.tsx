@@ -328,7 +328,7 @@ export default function Content() {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-4 md:gap-8"
+            className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-4 md:gap-8 px-6 md:px-0"
           >
             <h2 className="display-title text-[40px] md:text-[90px]">
               Selected <span className="serif-italic">Work.</span>
@@ -338,7 +338,7 @@ export default function Content() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="flex gap-8 overflow-x-auto pb-6 px-6 md:px-0 snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-track]:bg-white/5 [&::-webkit-scrollbar-thumb]:bg-white/20 [&::-webkit-scrollbar-thumb]:rounded-full">
             {[
               { name: "Laege Mathru Clinic", category: "Cosmetic & Wellness", image: "/assets/projects/laege-mathru-clinic.webp", url: "https://laegemathrru.vercel.app/" },
               { name: "Shreshta Interiors", category: "Architecture & Interiors", image: "/assets/projects/shreshta.webp", url: "https://shreshtademo.vercel.app/" },
@@ -355,25 +355,25 @@ export default function Content() {
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.6, delay: (i % 3) * 0.15 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
                 whileHover={{ scale: 1.02 }}
-                className="group cursor-pointer block"
+                className="group cursor-pointer shrink-0 w-[78vw] sm:w-[340px] snap-start"
               >
-                <div className="aspect-[16/10] rounded-3xl mb-6 overflow-hidden relative border border-white/5 bg-black">
+                <div className="aspect-[4/5] rounded-3xl mb-6 overflow-hidden relative border border-white/5 bg-black">
                   <img
                     src={project.image}
                     alt={`${project.name} — ${project.category}`}
                     loading="lazy"
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                    className="w-full h-full object-cover object-top"
                   />
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500"></div>
+                  <div className="absolute inset-0 bg-black/60 group-hover:bg-black/20 transition-colors duration-500"></div>
                 </div>
                 <div className="flex justify-between items-center px-2">
                   <div>
                     <h4 className="font-bold">{project.name}</h4>
                     <p className="text-xs text-white/40 uppercase tracking-widest mt-1">{project.category}</p>
                   </div>
-                  <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black group-hover:rotate-45 transition-all duration-300 shrink-0">
+                  <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all shrink-0">
                     →
                   </div>
                 </div>
